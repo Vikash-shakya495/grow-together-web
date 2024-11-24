@@ -62,7 +62,7 @@ const Notification = () => {
     return (
       <div className='noti'>
         <div><Toaster/></div>
-        <Navbar page={'notification'}/> 
+        {/* <Navbar page={'notification'}/>  */}
         <div className='noti-body'>
           <div className='list'>
             {noti.map((item, index) => (

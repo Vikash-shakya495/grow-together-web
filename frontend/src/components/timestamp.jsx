@@ -26,4 +26,4 @@ const Timestamp = (item) => {
     )
 }
 
-export default Timestamp
+export default Timestamp;

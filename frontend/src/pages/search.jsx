@@ -48,7 +48,7 @@ const Search = () => {
   return (
     <div className='search'>
       <div><Toaster/></div>
-      <Navbar page={'search'}/>
+      {/* <Navbar page={'search'}/> */}
       <div className='search-body'>
         <div className='search-div'>
           <div className="search-pill">

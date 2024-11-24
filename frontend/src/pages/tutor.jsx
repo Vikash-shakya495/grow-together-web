@@ -104,8 +104,7 @@ function handleDelete(item) {
 
     return(
       <div className='clist'>
-        <div><Toaster/></div>
-        <Navbar page={'tutor'}/> 
+        {/* <div><Toaster/></div> */}
         <div className='clist-body'>
             <br />
                 <div className='clist-part'>
@@ -181,7 +180,6 @@ function handleDelete(item) {
                     </div>
                 </div>
             )}
-
         </div>
       </div>
     )
