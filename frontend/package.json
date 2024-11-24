@@ -16,6 +16,8 @@
     "@emotion/styled": "^11.13.5",
     "@mui/material": "^6.1.8",
     "@reduxjs/toolkit": "^2.3.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@zegocloud/zego-uikit-prebuilt": "^2.13.1",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "framer-motion": "^11.11.17",
@@ -30,6 +32,7 @@
     "react-router-dom": "^6.27.0",
     "react-spinners": "^0.14.1",
     "react-star-ratings": "^2.3.0",
+    "react-toastify": "^10.0.6",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.13"

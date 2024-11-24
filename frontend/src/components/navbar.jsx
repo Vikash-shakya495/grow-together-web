@@ -8,6 +8,7 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
+import GrowTogetherLogo from '../assets/growTogetherLogo.png'
 
 const Navbar = (item) => {
   const navigate = useNavigate();
@@ -28,9 +29,7 @@ const Navbar = (item) => {
     <nav className="flex items-center justify-between p-4 bg-white shadow-lg">
       {/* Logo Section */}
       <div className="flex items-center space-x-3">
-        <span className="text-2xl font-bold text-teal-600">
-          Grow<span className="text-red-300">Together</span>
-        </span>
+        <img className="w-52" src={GrowTogetherLogo} alt="" />
       </div>
 
       {/* Navigation Links */}

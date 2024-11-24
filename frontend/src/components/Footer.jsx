@@ -1,4 +1,5 @@
 import React from 'react';
+import GrowTogetherLogo from '../assets/growTogetherLogo.png'
 
 function Footer() {
     return (
@@ -6,7 +7,7 @@ function Footer() {
             <div className="container mx-auto px-4 md:flex md:justify-between md:items-start gap-32">
                 {/* Logo and Description Section */}
                 <div className="mb-6 md:mb-0 md:w-1/3">
-                    <h2 className="text-teal-500 text-2xl font-bold">Grow<span className="text-red-300">Together™</span></h2>
+                    <img className="w-52" src={GrowTogetherLogo} alt="" />
                     <p className="mt-4 text-gray-500">
                         Search amazing individuals around the globe, find a mentor, expand your network, and learn from incredible people!
                     </p>

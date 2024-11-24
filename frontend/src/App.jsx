@@ -21,6 +21,8 @@ import Notification from "./pages/notification.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Search from "./pages/search.jsx";
 import MentorCategory from "./pages/mentors/MentorCategory.jsx";
+import Meeting from "./pages/Meeting.jsx";
+import Room from "./pages/Room.jsx";
 
 const App = () => {
   return (
@@ -39,7 +41,13 @@ const App = () => {
               <Route path="/learner" element={<ProtectedRoute element={Learner} />} />
               <Route path="/tutor" element={<ProtectedRoute element={Tutor} />} />
               {/* <Route path="/mentee" element={<MenteeDashboard />} /> */}
+<<<<<<< Updated upstream
               {/* <Route path="/mentor-category" element={<MentorCategory />} /> */}
+=======
+              <Route path="/mentor-category" element={<MentorCategory />} />
+              <Route path="/meeting" element={<Meeting />} />
+              <Route path="/room/:roomid" element={<Room/>} />
+>>>>>>> Stashed changes
             </Route>
 
             {/* Auth Layout */}

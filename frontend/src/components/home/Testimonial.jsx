@@ -9,13 +9,13 @@ const Testimonial = () => {
     ];
 
     return (
-        <div className="py-12 bg-white">
+        <div className="p-20 bg-white w-full mx-auto">
             <div className="border w-[50px] mx-auto mb-8 rounded-tr-3xl rounded-tl-3xl rounded-bl-3xl  p-2">
                 <img className="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" alt="" />
             </div>
             <h2 className="text-4xl font-semibold text-center text-gray-800">Don't just take our word for it!</h2>
             <p className="text-center text-gray-600 mt-4">Hear what the community is saying about us</p>
-            <div className="flex justify-center gap-6 mt-10">
+            <div className="py-10 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
                 <div className="bg-blue-100 p-6 rounded-xl shadow-lg w-80 hover:bg-teal-600 hover:text-white transition duration-300 ease-in-out">
                     <p className="text-lg italic">"I have been very fortunate to mentor amazing people that have worked for me over the years. Many have gone on to become entrepreneurs, leaders, and incredible mentors."</p>
                     <div className="flex items-center mt-4">

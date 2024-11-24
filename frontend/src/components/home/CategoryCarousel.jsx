@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setSelectedCategory } from "../../redux/mentorSlice"; // Redux action
+import { setSelectedCategory } from "../../redux/mentorSlice";
 import { useNavigate } from "react-router-dom";
 
 const categories = [
@@ -18,50 +18,97 @@ const CategoryCarousel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const carouselRef = useRef(null);
+    const startX = useRef(0);
+    const scrollLeft = useRef(0);
 
     const handleCategoryClick = (category) => {
-        dispatch(setSelectedCategory(category.name)); // Dispatch selected category
-        navigate("/mentor-category"); // Navigate to the mentors page
+        dispatch(setSelectedCategory(category.name));
+        navigate("/mentor-category");
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === "ArrowRight") {
+            setCurrentIndex((prev) => Math.min(prev + 1, Math.ceil(categories.length / 4) - 1));
+        } else if (e.key === "ArrowLeft") {
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+        }
+    };
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        startX.current = e.pageX - carouselRef.current.offsetLeft;
+        scrollLeft.current = carouselRef.current.scrollLeft;
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - carouselRef.current.offsetLeft;
+        const walk = x - startX.current;
+        carouselRef.current.scrollLeft = scrollLeft.current - walk;
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
     };
 
     return (
-        <div className="w-full md:w-5/6 mx-auto my-6">
-            <div className="relative">
-                <div className="flex overflow-hidden">
-                    <div
-                        className="flex transition-transform duration-500"
-                        style={{ transform: `translateX(-${currentIndex * 8}%)` }}
-                    >
-                        {categories.map((category, index) => (
-                            <div key={index} className="flex justify-center gap-12 items-center p-4 w-full">
-                                <div
-                                    className="relative w-[300px] bg-white shadow-lg rounded-xl overflow-hidden cursor-pointer"
-                                    onClick={() => handleCategoryClick(category)}
-                                >
-                                    <img
-                                        src={category.image}
-                                        alt={category.name}
-                                        className="w-full object-cover"
-                                    />
-                                    <div className="p-4">
-                                        <h3 className="text-xl font-semibold">{category.name}</h3>
-                                        <p className="text-sm text-gray-500">{category.mentorsAvailable} Mentors Available</p>
-                                    </div>
+        <div
+            className="w-full lg:w-5/6 mx-auto mb-32"
+            tabIndex={0}
+            onKeyDown={handleKeyPress} // Keyboard scrolling
+        >
+            <div
+                className="relative overflow-x-hidden"
+                ref={carouselRef}
+                onMouseDown={handleMouseDown} // Dragging
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+            >
+                <div
+                    className="flex transition-transform duration-500"
+                    style={{
+                        transform: `translateX(-${currentIndex * 10}%)`,
+                    }}
+                >
+                    {categories.map((category, index) => (
+                        <div
+                            key={index}
+                            className="flex-shrink-0 w-full md:w-2/3 md:p-12 lg:w-1/4 px-2 py-12"
+                        >
+                            <div
+                                className="bg-white shadow-lg rounded-xl overflow-hidden cursor-pointer"
+                                onClick={() => handleCategoryClick(category)}
+                            >
+                                <img
+                                    src={category.image}
+                                    alt={category.name}
+                                    className="w-full h-40 object-cover"
+                                />
+                                <div className="p-4">
+                                    <h3 className="text-lg font-semibold">{category.name}</h3>
+                                    <p className="text-sm text-gray-500">{category.mentorsAvailable} Mentors Available</p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
+            </div>
 
+            {/* Navigation Buttons (visible only on lg and above) */}
+            <div className="hidden lg:block relative">
                 <button
                     onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
-                    className="absolute -left-20 top-1/2 -translate-y-1/2 bg-gray-800 text-white py-2 px-4 rounded-full"
+                    className="absolute -left-20 -top-40 transform -translate-y-1/2 bg-white text-3xl p-8 rounded-full z-10 hover:bg-gray-700 hover:text-white border"
                 >
                     &#8249;
                 </button>
                 <button
-                    onClick={() => setCurrentIndex((prev) => Math.min(prev + 1, categories.length - 1))}
-                    className="absolute -right-20 top-1/2 -translate-y-1/2 bg-gray-800 text-white py-2 px-4 rounded-full"
+                    onClick={() => setCurrentIndex((prev) => Math.min(prev + 1, Math.ceil(categories.length / 4) - 1))}
+                    className="absolute -right-20 -top-40 transform -translate-y-1/2 bg-white text-3xl p-8 rounded-full z-10 hover:bg-gray-700 hover:text-white border"
                 >
                     &#8250;
                 </button>

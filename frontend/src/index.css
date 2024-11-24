@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+    width: 0 !important; /* Removes scrollbar width */
+    height: 0 !important; /* Removes horizontal scrollbar if any */
+}
+::selection {
+    background-color: rgb(250, 214, 214); /* Light red background for the selected text */
+    filter: invert(100%); /* Inverts the text color */
+  }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

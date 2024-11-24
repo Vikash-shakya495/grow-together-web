@@ -52,14 +52,14 @@ const Carousel = ({ trending = [] }) => {
 
   return (
     <div
-      className="relative w-5/6 mx-auto overflow-hidden shadow-lg h-[400px] rounded-2xl"
+      className="relative w-5/6 mx-auto overflow-hidden shadow-lg h-auto rounded-2xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className={`flex transition-transform ease-in-out duration-1000`}
         style={{
-          transform: `translateX(-${currentIndex * 50}%)`,
+          transform: `translateX(-${currentIndex * 100}%)`,
           transition: isTransitioning ? 'transform 1s ease-in-out' : 'none',
         }}
         onTransitionEnd={handleTransitionEnd}
@@ -67,13 +67,13 @@ const Carousel = ({ trending = [] }) => {
         {tr.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 flex flex-col items-center justify-center text-center bg-white border border-red-300 h-full relative z-20"
+            className="flex-shrink-0 flex flex-col items-center justify-center text-center bg-white  w-full h-full relative z-20"
           >
             <div className="absolute bottom-0 left-4 z-30 p-4 flex flex-col items-start bg-transparent">
               <h3 className="text-3xl text-white font-bold">{item?.courseName}</h3>
               <button
                 onClick={() => handleTry(item.courseId)}
-                className="mt-3 h-10 px-6 rounded-full bg-purple-700 text-white text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="mt-3 h-10 px-6 rounded-full bg-teal-300 text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Try this
               </button>
@@ -84,9 +84,9 @@ const Carousel = ({ trending = [] }) => {
               className="w-full h-auto max-h-96 object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-800 to-gray-900 opacity-80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-800 to-teal-900 opacity-80"></div>
             <div className="absolute bottom-0 right-0 p-4 flex flex-col items-end text-white">
-              <p>{item?.courseDesc}</p>
+              {/* <p>{item?.courseDesc}</p> */}
               <p>by {item?.courseTutor}</p>
               <p className="flex items-center">
                 {item?.rating}

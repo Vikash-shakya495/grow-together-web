@@ -10,12 +10,12 @@ const HowItWorks = () => {
 
     return (
         <div className="py-12 w-5/5 mt-12 mx-auto">
-            <h2 className="text-4xl text-center text-gray-800">How GrowTogether Works</h2>
-            <div className="mt-8 flex justify-center space-x-6 w-4/5 mx-auto">
+            <h2 className="text-4xl text-center text-gray-800">How <span className="text-teal-400">Grow</span><span className="text-red-300">Together</span> Works</h2>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-6 w-5/6 mx-auto">
                 {steps.map((step, index) => (
                     <div
                         key={index}
-                        className="p-6 rounded-lg text-center w-1/3 transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+                        className="p-6 rounded-lg text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"
                         style={{
                             animation: `fadeIn 0.5s ease-out ${index * 0.2}s both`,
                         }}

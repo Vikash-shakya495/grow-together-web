@@ -39,41 +39,49 @@ function Learner() {
     }, []);
 
     return (
-        <div className="flex justify-center items-center min-h-screen w-full bg-gray-100">
-            <div><Toaster /></div>
-            <div className="flex flex-col justify-start items-center h-full w-5/6 mt-12">
-                <div className="h-5/6 w-full p-6 rounded-lg">
-                    <div className="w-full">
-                        <h2 className="text-gray-800 text-2xl font-semibold mb-4">Trending Courses</h2>
-                        <Carousel trending={trending} />
-                    </div>
-                    <div className="w-full mt-8">
-                        <h2 className="text-gray-800 text-2xl font-semibold mb-4">Enrolled Courses</h2>
-                        <ul className="w-full space-y-4">
-                            {enrolled.map((item, index) => (
-                                <li
-                                    key={index}
-                                    className="bg-gray-100 shadow-sm p-4 rounded-lg cursor-pointer hover:shadow-md transition"
-                                    onClick={() => handleEnrolled(item.courseId)}
-                                >
-                                    <img
-                                        src={`/images/${item.category}.jpg`}
-                                        className="w-full h-40 rounded-lg object-cover"
-                                        loading="lazy"
-                                        alt="Course"
-                                    />
-                                    <div className="text-gray-800 mt-2">
-                                        <p className="font-semibold text-lg">{item.courseName}</p>
-                                        <p className="text-sm text-gray-600">By {item.courseTutor}</p>
-                                        <p className="flex items-center text-sm text-gray-600">
-                                            {item.rating}
-                                            <MdOutlineStar className="text-yellow-500 ml-1" /> /5
-                                        </p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+        <div className="relative flex flex-col justify-start items-center h-full w-full mt-12 overflow-x-hidden">
+            {/* Parent div should have position relative */}
+            <div className="h-5/6 p-6 rounded-lg relative md:w-5/6">
+                <div
+                    className="absolute transform rotate-[55deg] bg-teal-100 rounded-2xl h-24 w-24 md:h-36 md:w-36"
+                    style={{ top: "30%", left: "-15%" }} // Adjusting left for better visibility
+                ></div>
+                <div
+                    className="absolute transform rotate-[55deg] bg-teal-100 rounded-2xl h-24 w-24 md:h-36 md:w-36"
+                    style={{ top: "60%", right: "-15%" }} // Adjusting right for better visibility
+                ></div>
+
+                {/* Rest of your content */}
+                <div className="w-full">
+                    <h2 className="text-gray-800 text-2xl font-semibold mb-4">Trending Courses</h2>
+                    <Carousel trending={trending} />
+                </div>
+                <div className="w-full mt-20">
+                    <h2 className="text-gray-800 text-2xl font-semibold mb-4">Enrolled Courses</h2>
+                    <ul className="mt-12 w-full grid grid-cols-3 space-y-4">
+                        {enrolled.map((item, index) => (
+                            <li
+                                key={index}
+                                className="border  flex flex-col bg-gray-100 shadow-sm p-4 rounded-lg cursor-pointer hover:shadow-md transition"
+                                onClick={() => handleEnrolled(item.courseId)}
+                            >
+                                <img
+                                    src={`/images/${item.category}.jpg`}
+                                    className="w-full h-40 rounded-lg object-cover"
+                                    loading="lazy"
+                                    alt="Course"
+                                />
+                                <div className="text-gray-800 mt-2">
+                                    <p className="font-semibold text-lg">{item.courseName}</p>
+                                    <p className="text-sm text-gray-600">By {item.courseTutor}</p>
+                                    <p className="flex items-center text-sm text-gray-600">
+                                        {item.rating}
+                                        <MdOutlineStar className="text-yellow-500 ml-1" /> /5
+                                    </p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>
