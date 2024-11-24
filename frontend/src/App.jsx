@@ -9,6 +9,7 @@ import Layout from "./components/layouts/Layout";
 import AuthLayout from "./components/layouts/AuthLayout";
 
 import Home from "./pages/Home.jsx";
+import Password from "./pages/forgotPassword.jsx";
 import Login from "./pages/login.jsx";
 import Signup from "./pages/signup.jsx";
 import Profile from "./pages/profile.jsx";
@@ -38,13 +39,14 @@ const App = () => {
               <Route path="/learner" element={<ProtectedRoute element={Learner} />} />
               <Route path="/tutor" element={<ProtectedRoute element={Tutor} />} />
               {/* <Route path="/mentee" element={<MenteeDashboard />} /> */}
-              <Route path="/mentor-category" element={<MentorCategory />} />
+              {/* <Route path="/mentor-category" element={<MentorCategory />} /> */}
             </Route>
 
             {/* Auth Layout */}
             <Route element={<AuthLayout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<Password />} />
             </Route>
           </Routes>
         </Router>

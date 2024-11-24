@@ -1,29 +1,38 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const userRoutes = require('./routes/routes'); 
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { join } from 'path';
+import dotenv from 'dotenv';
+import userRoutes from './routes/routes.js';
+import forgotPasswordRoutes from './routes/forgotPassword.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors()); 
 
-app.use(express.json()); 
+// Middleware
+app.use(express.json());
+app.use(cors());
+dotenv.config();
 
 app.use('/api', userRoutes);
+app.use('/api/forgot-password', forgotPasswordRoutes);
 
-const mongoose = require("mongoose");
-const connect = mongoose.connect(`mongodb+srv://dtc:Aman2003@cluster0.76mqa.mongodb.net/quer`)
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log('Failed to connect to MongoDB:', err));
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
+
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use((join(__dirname, '../client/build')));
     
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+        res.sendFile(join(__dirname, '../client/build', 'index.html'));
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////

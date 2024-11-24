@@ -37,6 +37,8 @@ const userSchema = new mongoose.Schema({
       type: String
     }
   ],
+  otp: { type: String },
+  otpExpires: { type: Date },
   teachingCourses: [
     {
       type: String  
