@@ -1,17 +1,12 @@
-import '../style/logsign.css'
 import React, { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../redux/actions.js'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
-function Signup()
-{
+function Signup() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const [name, setUsername] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rpassword, setRPassword] = useState('');
@@ -23,115 +18,127 @@ function Signup()
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        if (!email) {
-            toast.error('You can only register with nitc email.');
+        if (password !== rpassword) {
+            toast.error('Passwords do not match!');
+            return;
         }
-        else{
-            axios.post('http://localhost:5000/api/signup', {name, email, password, roll})
-            .then(res=>{
-                if(res.status==200) 
-                {
-                    dispatch(login({ name:res.data.user.name, id:res.data.user.userId, email:email, password:password }));
-                    navigate('/learner');
-                    setUsername('');
+
+        axios.post('http://localhost:5000/api/signup', { name, email, password, roll })
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success('User registered successfully!');
+                    setName('');
                     setEmail('');
                     setPassword('');
+                    setRPassword('');
                     setRoll('');
-                    toast.success('User registered!')
+                    navigate('/login'); // Redirect to login after successful signup
+                } else {
+                    toast.error('Failed to register. Please check your details.');
                 }
-                else
-                {
-                    toast.error('Invalid details')
-                    navigate('/signup')
-                }
-            }) 
-            .catch(err=>{
-                toast.error('Something went wrong!')
-                navigate('/signup')
             })
-        }
-    };
+            .catch(err => {
+                console.error(err);
+                toast.error('Something went wrong!');
+            });
+    }
 
-    return(
-      <div  className='log'>
-        <div><Toaster/></div>
-        <div className='panel'>
-            <div className='left'>
-                <div className='log-visual'>
-                    <div className='a'>
-                        Talent Swap
-                        <button className="go back" onClick={goBack}>Go Back 🡭</button>
-                    </div>
-                    <div className='b'>
-                        <p>Learn Connect Thrive</p>
+    return (
+        <div className="flex items-center justify-center min-h-screen from-gray-100 via-gray-100 to-gray-900">
+            <Toaster />
+            <div className="flex w-14/9 max-w-7xl bg-white rounded-lg shadow-lg">
+                {/* Left Panel */}
+                <div className="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-b from-teal-300 to-teal-400 rounded-l-lg text-white text-center p-8">
+                    <div>
+                        <span className="text-4xl font-bold text-teal-600">
+                            Grow<span className="text-red-300">Together</span>
+                        </span>
+                        <p className="text-lg text-black mb-8">Learn. Connect. Thrive.</p>
+                        <button
+                            onClick={goBack}
+                            className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-full shadow-lg transition transform hover:scale-95"
+                        >
+                            Go Back 🡭
+                        </button>
                     </div>
                 </div>
-            </div>
-          <div className="login-container">
-                <div className='logbox'>
-                    <form onSubmit={handleSubmit}>
-                        <p className='instruct'>Create an account</p> 
+
+                {/* Signup Form */}
+                <div className="w-full md:w-1/2 p-8 bg-gray-100 rounded-r-lg">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <h2 className="text-2xl text-gray-700 font-semibold text-center mb-6">Create your account</h2>
                         <div>
-                            <input className='inp'
+                            <input
                                 type="text"
-                                id="username"
-                                placeholder='Enter first name'
+                                placeholder="Enter your name"
                                 value={name}
-                                onChange={(e) => setUsername(e.target.value)}
-                                autoComplete="username"
+                                onChange={(e) => setName(e.target.value)}
+                                className="w-full px-4 py-2 rounded bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300"
                                 required
                             />
                         </div>
                         <div>
-                            <input className='inp'
+                            <input
                                 type="text"
-                                id="roll"
-                                placeholder='Enter roll number'
+                                placeholder="Enter your roll number"
                                 value={roll}
                                 onChange={(e) => setRoll(e.target.value)}
-                                autoComplete="roll"
+                                className="w-full px-4 py-2 rounded bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300"
                                 required
                             />
                         </div>
-                        <div> 
-                            <input className='inp'
-                                type="text"
-                                id="email"
+                        <div>
+                            <input
+                                type="email"
+                                placeholder="Enter email"
                                 value={email}
-                                placeholder='Enter email'
                                 onChange={(e) => setEmail(e.target.value)}
-                                autoComplete="email"
+                                className="w-full px-4 py-2 rounded bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300"
                                 required
                             />
                         </div>
                         <div>
-                            <input className='inp'
+                            <input
                                 type="password"
+                                placeholder="Enter password"
                                 value={password}
-                                placeholder='Enter password'
                                 onChange={(e) => setPassword(e.target.value)}
-                                autoComplete="newpassword"
+                                className="w-full px-4 py-2 rounded bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300"
                                 required
                             />
                         </div>
                         <div>
-                            <input className='inp'
+                            <input
                                 type="password"
+                                placeholder="Repeat password"
                                 value={rpassword}
-                                placeholder='Repeat password'
                                 onChange={(e) => setRPassword(e.target.value)}
-                                autoComplete="newpassword"
+                                className="w-full px-4 py-2 rounded bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300"
                                 required
                             />
                         </div>
-                        <button className='inp-btn' type="submit">Register</button>
+                        <button
+                            type="submit"
+                            className="w-full bg-teal-300 hover:bg-teal-100 py-2 rounded-lg shadow-lg transition transform hover:scale-95"
+                        >
+                            Register
+                        </button>
                     </form>
+
+                    <div className="text-center mt-6 text-sm">
+                        <span className="text-gray-500">Already have an account? </span>
+                        <button
+                            type="button"
+                            onClick={() => navigate('/login')}
+                            className="text-teal-600 hover:underline"
+                        >
+                            Login
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
-    )
+    );
 }
 
-export default Signup
+export default Signup;
