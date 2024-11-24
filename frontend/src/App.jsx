@@ -41,13 +41,7 @@ const App = () => {
               <Route path="/learner" element={<ProtectedRoute element={Learner} />} />
               <Route path="/tutor" element={<ProtectedRoute element={Tutor} />} />
               {/* <Route path="/mentee" element={<MenteeDashboard />} /> */}
-<<<<<<< Updated upstream
               {/* <Route path="/mentor-category" element={<MentorCategory />} /> */}
-=======
-              <Route path="/mentor-category" element={<MentorCategory />} />
-              <Route path="/meeting" element={<Meeting />} />
-              <Route path="/room/:roomid" element={<Room/>} />
->>>>>>> Stashed changes
             </Route>
 
             {/* Auth Layout */}
