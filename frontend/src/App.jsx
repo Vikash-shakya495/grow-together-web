@@ -23,6 +23,8 @@ import Search from "./pages/search.jsx";
 import MentorCategory from "./pages/mentors/MentorCategory.jsx";
 import Meeting from "./pages/Meeting.jsx";
 import Room from "./pages/Room.jsx";
+import MentorDashboard from "./pages/MentorDashboard.jsx";
+import Feedback from "./pages/Feedback.jsx";
 
 const App = () => {
   return (
@@ -40,8 +42,9 @@ const App = () => {
               <Route path="/course/:courseId" element={<Course />} />
               <Route path="/learner" element={<ProtectedRoute element={Learner} />} />
               <Route path="/tutor" element={<ProtectedRoute element={Tutor} />} />
-              {/* <Route path="/mentee" element={<MenteeDashboard />} /> */}
-              {/* <Route path="/mentor-category" element={<MentorCategory />} /> */}
+              <Route path="/mentor/dashboard" element={<MentorDashboard />} />
+              <Route path="/mentor-category" element={<MentorCategory />} />
+              <Route path="/feedback" element={<Feedback />} />
             </Route>
 
             {/* Auth Layout */}

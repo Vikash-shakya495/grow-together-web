@@ -1,8 +1,8 @@
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
-import User from '../models/User.js'; // Assuming you have a User model
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt =  require('jsonwebtoken');
+const nodemailer  = require('nodemailer');
+const User = require('../models/User.js'); // Assuming you have a User model
 
 const router = express.Router();
 
@@ -95,4 +95,4 @@ router.post('/reset', async (req, res) => {
     }
 });
 
-export default router;
+module.exports=  router;
