@@ -521,4 +521,4 @@ router.post('/getNotification', auth, async (req, res) => {
 });
 
 
-export default router;
+module.exports = router;
