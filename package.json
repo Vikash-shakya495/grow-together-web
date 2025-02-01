@@ -25,5 +25,14 @@
     "innovation"
   ],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amanbhai1/Grow-Together.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amanbhai1/Grow-Together/issues"
+  },
+  "homepage": "https://github.com/amanbhai1/Grow-Together#readme"
 }
