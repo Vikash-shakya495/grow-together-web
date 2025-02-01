@@ -33,7 +33,7 @@ const Navbar = (item) => {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex flex-row items-center justify-center space-x-6 hidden md:flex">
+      <div className="flex flex-row items-center justify-center space-x-6  md:flex">
         <NavItem
           active={activeNavItem === "tutor"}
           onClick={() => handleClick("/tutor")}
