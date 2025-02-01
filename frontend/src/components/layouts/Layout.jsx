@@ -8,7 +8,7 @@ const Layout = () => {
         <div>
             <Navbar />
             <main className="min-h-screen">
-                <Outlet /> {/* This renders the child components */}
+                <Outlet /> {/* This renders the child components   */}
             </main>
             <Footer />
         </div>
